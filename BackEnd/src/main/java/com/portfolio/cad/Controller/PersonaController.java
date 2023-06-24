@@ -99,9 +99,9 @@ public class PersonaController {
         if (sPersona.existsByImg(dtopersona.getImg()) && sPersona.getByImg(dtopersona.getImg()).get().getId() != id) {
             return new ResponseEntity(new Mensaje("Esa img ya existe"), HttpStatus.BAD_REQUEST);
         }
-
+        
         //El campo no puede estar vacío
-        if (StringUtils.isBlank(dtopersona.getApellido())) {
+        if (StringUtils.isBlank(dtopersona.getImg())) {
             return new ResponseEntity(new Mensaje("El campo no puede estar vacío"), HttpStatus.BAD_REQUEST);
         }
 

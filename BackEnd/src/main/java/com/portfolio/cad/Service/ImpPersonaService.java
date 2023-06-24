@@ -12,8 +12,11 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 public class ImpPersonaService {
-    @Autowired IPersonaRepository ipersonaRepository;
-    
+   
+
+    @Autowired
+    IPersonaRepository ipersonaRepository;
+
     public List<Persona> list() {
         return ipersonaRepository.findAll();
     }
@@ -25,15 +28,15 @@ public class ImpPersonaService {
     public Optional<Persona> getByNombre(String nombre) {
         return ipersonaRepository.findByNombre(nombre);
     }
-    
+
     public Optional<Persona> getByApellido(String apellido) {
         return ipersonaRepository.findByApellido(apellido);
     }
-    
+
     public Optional<Persona> getByDescripcion(String descripcion) {
         return ipersonaRepository.findByDescripcion(descripcion);
     }
-    
+
     public Optional<Persona> getByImg(String img) {
         return ipersonaRepository.findByImg(img);
     }
@@ -53,15 +56,15 @@ public class ImpPersonaService {
     public boolean existsByNombre(String nombre) {
         return ipersonaRepository.existsByNombre(nombre);
     }
-    
+
     public boolean existsByApellido(String apellido) {
         return ipersonaRepository.existsByNombre(apellido);
     }
-    
+
     public boolean existsByDescripcion(String descripcion) {
         return ipersonaRepository.existsByDescripcion(descripcion);
     }
-    
+
     public boolean existsByImg(String img) {
         return ipersonaRepository.existsByNombre(img);
     }
