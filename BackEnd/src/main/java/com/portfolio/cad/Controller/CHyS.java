@@ -35,9 +35,9 @@ public class CHyS {
 
     @GetMapping("/detail/{id}")
     public ResponseEntity<HyS> getById(@PathVariable("id") int id) {
-        if (!sHys.existsById(id)) {
+        if (!sHys.existsById(id)) 
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-        }
+        
         HyS hys = sHys.getOne(id).get();
         return new ResponseEntity(hys, HttpStatus.OK);
     }
