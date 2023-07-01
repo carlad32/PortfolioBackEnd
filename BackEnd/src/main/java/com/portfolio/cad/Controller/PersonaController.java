@@ -34,9 +34,9 @@ public class PersonaController {
 
     @GetMapping("/detail/{id}")
     public ResponseEntity<Persona> getById(@PathVariable("id") int id) {
-        if (!sPersona.existsById(id)) {
+        if (!sPersona.existsById(id)) 
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.BAD_REQUEST);
-        }
+        
         Persona persona = sPersona.getOne(id).get();
         return new ResponseEntity(persona, HttpStatus.OK);
     }
@@ -63,48 +63,47 @@ public class PersonaController {
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoPersona dtopersona) {
 
         //Validamos si existe el ID
-        if (!sPersona.existsById(id)) {
+        if (!sPersona.existsById(id)) 
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.NOT_FOUND);
-        }
+        
 
-        if (sPersona.existsByNombre(dtopersona.getNombre()) && sPersona.getByNombre(dtopersona.getNombre()).get().getId() != id) {
+        if (sPersona.existsByNombre(dtopersona.getNombre()) && sPersona.getByNombre(dtopersona.getNombre()).get().getId() != id) 
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
-        }
+        
 
         //El campo no puede estar vacío
-        if (StringUtils.isBlank(dtopersona.getNombre())) {
+        if (StringUtils.isBlank(dtopersona.getNombre())) 
             return new ResponseEntity(new Mensaje("El campo no puede estar vacío"), HttpStatus.BAD_REQUEST);
-        }
+        
         
   
 
-        if (sPersona.existsByApellido(dtopersona.getApellido()) && sPersona.getByApellido(dtopersona.getApellido()).get().getId() != id) {
+        if (sPersona.existsByApellido(dtopersona.getApellido()) && sPersona.getByApellido(dtopersona.getApellido()).get().getId() != id) 
             return new ResponseEntity(new Mensaje("Ese apellido ya existe"), HttpStatus.BAD_REQUEST);
-        }
+        
 
         //El campo no puede estar vacío
-        if (StringUtils.isBlank(dtopersona.getApellido())) {
+        if (StringUtils.isBlank(dtopersona.getApellido())) 
             return new ResponseEntity(new Mensaje("El campo no puede estar vacío"), HttpStatus.BAD_REQUEST);
-        }
         
-         if (sPersona.existsByDescripcion(dtopersona.getDescripcion()) && sPersona.getByDescripcion(dtopersona.getDescripcion()).get().getId() != id) {
+        
+         if (sPersona.existsByDescripcion(dtopersona.getDescripcion()) && sPersona.getByDescripcion(dtopersona.getDescripcion()).get().getId() != id) 
             return new ResponseEntity(new Mensaje("Esa descripcion ya existe"), HttpStatus.BAD_REQUEST);
-        }
+        
 
         //El campo no puede estar vacío
-        if (StringUtils.isBlank(dtopersona.getDescripcion())) {
+        if (StringUtils.isBlank(dtopersona.getDescripcion())) 
             return new ResponseEntity(new Mensaje("El campo no puede estar vacío"), HttpStatus.BAD_REQUEST);
-        }
         
-        if (sPersona.existsByImg(dtopersona.getImg()) && sPersona.getByImg(dtopersona.getImg()).get().getId() != id) {
+        
+        if (sPersona.existsByImg(dtopersona.getImg()) && sPersona.getByImg(dtopersona.getImg()).get().getId() != id) 
             return new ResponseEntity(new Mensaje("Esa img ya existe"), HttpStatus.BAD_REQUEST);
-        }
+        
         
         //El campo no puede estar vacío
-        if (StringUtils.isBlank(dtopersona.getImg())) {
+        if (StringUtils.isBlank(dtopersona.getImg())) 
             return new ResponseEntity(new Mensaje("El campo no puede estar vacío"), HttpStatus.BAD_REQUEST);
-        }
-
+        
         Persona persona = sPersona.getOne(id).get();
         persona.setNombre(dtopersona.getNombre());
         persona.setApellido(dtopersona.getApellido());
