@@ -44,13 +44,13 @@ public class CEducacion {
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoEducacion dtoedu) {
-        if (StringUtils.isBlank(dtoedu.getNombreE())) {
+        if (StringUtils.isBlank(dtoedu.getNombreE())) 
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        }
+        
 
-        if (sEducacion.existsByNombreE(dtoedu.getNombreE())) {
+        if (sEducacion.existsByNombreE(dtoedu.getNombreE())) 
             return new ResponseEntity(new Mensaje("Ese nombre ya ha sido guardado"), HttpStatus.BAD_REQUEST);
-        }
+        
 
         Educacion educacion = new Educacion(dtoedu.getNombreE(), dtoedu.getDescripcionE());
         sEducacion.save(educacion);
@@ -62,18 +62,18 @@ public class CEducacion {
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoEducacion dtoedu) {
 
         //Validamos si existe el ID
-        if (!sEducacion.existsById(id)) {
+        if (!sEducacion.existsById(id)) 
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.NOT_FOUND);
-        }
+        
 
-        if (sEducacion.existsByNombreE(dtoedu.getNombreE()) && sEducacion.getByNombreE(dtoedu.getNombreE()).get().getId() != id) {
+        if (sEducacion.existsByNombreE(dtoedu.getNombreE()) && sEducacion.getByNombreE(dtoedu.getNombreE()).get().getId() != id) 
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
-        }
+        
 
         //El campo no puede estar vacío
-        if (StringUtils.isBlank(dtoedu.getNombreE())) {
+        if (StringUtils.isBlank(dtoedu.getNombreE())) 
             return new ResponseEntity(new Mensaje("El campo no puede estar vacío"), HttpStatus.BAD_REQUEST);
-        }
+        
 
         Educacion educacion = sEducacion.getOne(id).get();
         educacion.setNombreE(dtoedu.getNombreE());
@@ -85,9 +85,9 @@ public class CEducacion {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
-        if (!sEducacion.existsById(id)) {
+        if (!sEducacion.existsById(id)) 
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.NOT_FOUND);
-        }
+        
 
         sEducacion.delete(id);
 

@@ -44,13 +44,13 @@ public class CHyS {
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoHyS dtohys) {
-        if (StringUtils.isBlank(dtohys.getNombre())) {
+        if (StringUtils.isBlank(dtohys.getNombre())) 
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        }
+        
 
-        if (sHys.existsByNombre(dtohys.getNombre())) {
+        if (sHys.existsByNombre(dtohys.getNombre())) 
             return new ResponseEntity(new Mensaje("Esa skill ya ha sido guardada"), HttpStatus.BAD_REQUEST);
-        }
+        
 
         HyS hys = new HyS(dtohys.getNombre(), dtohys.getPorcentaje());
         sHys.save(hys);
@@ -62,18 +62,18 @@ public class CHyS {
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoHyS dtohys) {
 
         //Validamos si existe el ID
-        if (!sHys.existsById(id)) {
+        if (!sHys.existsById(id)) 
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
-        }
+        
 
-        if (sHys.existsByNombre(dtohys.getNombre()) && sHys.getByNombre(dtohys.getNombre()).get().getId() != id) {
+        if (sHys.existsByNombre(dtohys.getNombre()) && sHys.getByNombre(dtohys.getNombre()).get().getId() != id)
             return new ResponseEntity(new Mensaje("Ese skill ya existe"), HttpStatus.BAD_REQUEST);
-        }
+        
 
         //El campo no puede estar vacío
-        if (StringUtils.isBlank(dtohys.getNombre())) {
+        if (StringUtils.isBlank(dtohys.getNombre())) 
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        }
+        
 
         HyS hys = sHys.getOne(id).get();
         hys.setNombre(dtohys.getNombre());
@@ -85,9 +85,9 @@ public class CHyS {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
-        if (!sHys.existsById(id)) {
+        if (!sHys.existsById(id)) 
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
-        }
+        
 
         sHys.delete(id);
 
